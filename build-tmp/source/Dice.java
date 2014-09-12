@@ -1,16 +1,32 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Dice extends PApplet {
+
 Die james= new Die (50,100);
 Die falcao = new Die (150,100);
 int strokeWeightMod=2;
 int dieRadius= 5;
 
-void setup()
+public void setup()
 {
 	size(300,300);
 	noLoop();
 	background(255);
     strokeWeight(strokeWeightMod);
 }
-void draw()
+public void draw()
 {
 	background(0);
 	int sum= james.faceValue + falcao.faceValue;
@@ -23,7 +39,7 @@ void draw()
     
 	
 }
-void mousePressed()
+public void mousePressed()
 {
 	redraw();
 }
@@ -36,11 +52,11 @@ class Die //models one single dice cube
 		myY=y;
 
 	}
-	void roll()
+	public void roll()
 	{
 	 faceValue= (int)(Math.random()*6)+1;
 	}
-	void show()
+	public void show()
 	{
 		rect(myX,myY,50,50);
 		if (faceValue==1){
@@ -84,3 +100,12 @@ class Die //models one single dice cube
 
 
  
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Dice" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
